@@ -22,20 +22,20 @@
    </head>
    <body>
 
- <div class="main-body">
+  <div class="main-body">
   <section class="container py-5">
     <div class="w-50 mx-auto">
-      <form method="get" class="form-design px-5">
+      <form method="POST" class="form-design px-5" action="index.php">
         <h2 class="pt-4">Registration!</h2>
         <div class="form-row pb-5">
             <div class="form-group mt-3">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" placeholder="Enter your name..." data-sb-validations="required" /> 
+              <input type="text" class="form-control" id="userName" placeholder="Your Username" data-sb-validations="required" > 
             </div>
             <div class="form-group mt-3">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter your password..." data-sb-validations="required" />
-                
+              <input type="email" class="form-control" id="inputEmail" placeholder="Your Email" data-sb-validations="required" >
+            </div>
+            <div class="form-group mt-3">
+              <input type="password" class="form-control" id="inputPassword" placeholder="Password" data-sb-validations="required" >
             </div>
             <div class="form-group mt-3">
               <input type="submit" value="Submit" class="btn button-style">
@@ -48,6 +48,9 @@
   </section>
 </div>
 
+<!-- FORM -->
+
+          
 
 
    </body>

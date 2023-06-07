@@ -24,8 +24,8 @@
     <div class="main-body">
     <section class="container py-5">
         <div class="w-50 mx-auto">
-        <form method="get" class="form-design px-5">
-            <h2 class="pt-4">Registration!</h2>
+        <form action="#" method="GET" class="form-design px-5">
+            <h2 class="pt-4">Add a Task</h2>
             <div class="form-row pb-5">
                 <div class="form-group mt-3">
                     <label for="taskName">Task Name</label>
@@ -39,7 +39,12 @@
 
                 <div class="form-group mt-3">
                     <label for="dueDate">DueDate</label>
-                    <input type="datetime" class="form-control" id="dueDate" placeholder="yyyy/mm/dd" data-sb-validations="required" />
+                    <input type="date" class="form-control" id="dueDate" placeholder="yyyy/mm/dd" data-sb-validations="required" />
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="duetime">Time</label>
+                    <input type="time" class="form-control" id="duetime" placeholder="00:00" data-sb-validations="required" />
                 </div>
 
                 
