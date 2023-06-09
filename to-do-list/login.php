@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
    <head>
@@ -22,33 +24,31 @@
    </head>
    <body>
 
- <div class="main-body">
-  <section class="container py-5">
-    <div class="w-50 mx-auto">
-      <form class="form-design px-5" method="POST" action="index.php">
-        <h2 class="pt-4">Already a User? Login to Your Account</h2>
-        <div class="form-row pb-5">
-            <div class="form-group mt-3">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" placeholder="Enter your name..." data-sb-validations="required" /> 
+  <div class="main-body">
+    <section class="container py-5">
+      <div class="w-50 mx-auto">
+        <form class="form-design px-5" method="POST" action="login.php">
+          <h2 class="pt-4">Already a User? Login to Your Account</h2>
+          <div class="form-row pb-5">
+              <div class="form-group mt-3">
+                  <label for="username">Username</label>
+                  <input type="text" class="form-control" id="username" placeholder="Enter your name..." data-sb-validations="required" /> 
+              </div>
+              <div class="form-group mt-3">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" id="password" placeholder="Enter your password..." data-sb-validations="required" />
+                  
+              </div>
+              <div class="form-group mt-3">
+                <input type="submit" value="Submit" class="btn button-style">
+                <a href="registration.php" target="_blank" class="btn btn-primary button-style">Sign Up</a>
+              </div>
             </div>
-            <div class="form-group mt-3">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter your password..." data-sb-validations="required" />
-                
-            </div>
-            <div class="form-group mt-3">
-              <input type="submit" value="Submit" class="btn button-style">
-              <a href="registration.php" target="_blank" class="btn btn-primary button-style">Sign Up</a>
-            </div>
-          </div>
-          
-      </form>
-    </div>
-  </section>
-</div>
+            
+        </form>
+      </div>
+    </section>
+  </div>
 
-
-
-   </body>
+ </body>
 </html>
