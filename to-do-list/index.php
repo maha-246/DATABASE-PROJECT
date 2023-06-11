@@ -1,3 +1,12 @@
+<?php
+if(!isset($_COOKIE['userID'])) {
+  echo "Cookie named '" . $_COOKIE['userID'] . "' is not set!";
+} else {
+  echo "Cookie '" . $_COOKIE['userID'] . "' is set!<br>";
+  echo "Value is: " . $_COOKIE['userID'];
+}
+?>
+
 <!DOCTYPE html>
 <html>
    <head>
@@ -21,7 +30,10 @@
     <link rel="stylesheet" href="stylesheet.css">
    </head>
    <body>
-    <h1>hwllo</h1>
+    <h1>Go to Add Task</h1>
+    <a href="addTask.php" target="_blank" class="btn btn-primary button-style">Add a Task</a>
 
+    <h1>Go to Display</h1>
+    <a href="display.php" target="_blank" class="btn btn-primary button-style">Add a Task</a>
    </body>
 </html>

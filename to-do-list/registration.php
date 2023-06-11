@@ -110,22 +110,22 @@ if (isset($_POST['submit'])) {
 
             <!-- first name -->
             <div class="form-group mt-3">
-              <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" data-sb-validations="required">
+              <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" required>
             </div>
 
             <!-- //last name -->
             <div class="form-group mt-3">
-              <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" data-sb-validations="required">
+              <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" required>
             </div>
 
             <!-- //username -->
             <div class="form-group mt-3">
-              <input type="text" class="form-control" id="username" name="username" placeholder="Your Username" data-sb-validations="required">
+              <input type="text" class="form-control" id="username" name="username" placeholder="Your Username" required>
             </div>
 
             <!-- //email -->
             <div class="form-group mt-3">
-              <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Your Email" data-sb-validations="required">
+              <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Your Email" required>
             </div>
 
             <!-- //password -->
