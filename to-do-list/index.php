@@ -27,13 +27,27 @@ if(!isset($_COOKIE['userID'])) {
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
     />
-    <link rel="stylesheet" href="stylesheet.css">
+    <link rel="stylesheet" href="css/stylesheet.css" />
    </head>
    <body>
     <h1>Go to Add Task</h1>
-    <a href="addTask.php" target="_blank" class="btn btn-primary button-style">Add a Task</a>
+    <a href="task/addTask.php" target="_blank" class="btn btn-primary button-style">Add a Task</a>
 
     <h1>Go to Display</h1>
-    <a href="display.php" target="_blank" class="btn btn-primary button-style">Add a Task</a>
-   </body>
+    <a href="task/display.php" target="_blank" class="btn btn-primary button-style">Display</a>
+    
+    <h1>Login</h1>
+    <a href="login.php" target="_blank" class="btn btn-primary button-style">Login</a>
+
+    //fucntionality for logout
+    <?php
+    // session_start();
+    if(isset($_COOKIE['userID'])):  // Check if the user is logged in
+    ?>
+    <h1>Logout</h1>
+    <a href="logout.php" target="_blank" class="btn btn-primary button-style">Logout</a>
+    <?php endif; ?>
+  
+  </body>
+
 </html>
