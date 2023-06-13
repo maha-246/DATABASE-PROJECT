@@ -35,7 +35,7 @@ $query = "";
 if (isset($_GET['courseID']) && $_GET['courseID'] != NULL) {
     $selectedCourseID = $_GET['courseID'];
     if ($selectedCourseID !== false) {
-        $query = "SELECT t.taskName, t.taskDescrip, t.dueDate, t.dueTime, c.CourseName 
+        $query = "SELECT t.taskID,t.taskName, t.taskDescrip, t.dueDate, t.dueTime, c.CourseName 
                     FROM tasks t 
                     JOIN UserCourseTask uct ON t.taskID = uct.taskID 
                     JOIN UserCourse uc ON uct.UserCourseID = uc.UserCourseID
@@ -61,7 +61,7 @@ if (isset($_GET['courseID']) && $_GET['courseID'] != NULL) {
     $stmt->execute();
     $tasks = $stmt->get_result();
 } else {
-    $query = "SELECT t.taskName, t.taskDescrip, t.dueDate, t.dueTime, c.CourseName 
+    $query = "SELECT t.taskID,t.taskName, t.taskDescrip, t.dueDate, t.dueTime, c.CourseName 
                 FROM tasks t 
                 JOIN UserCourseTask uct ON t.taskID = uct.taskID 
                 JOIN UserCourse uc ON uct.UserCourseID = uc.UserCourseID
@@ -74,123 +74,99 @@ if (isset($_GET['courseID']) && $_GET['courseID'] != NULL) {
     $tasks = $stmt->get_result();
 }
 
-if(isset($_GET['edit'])){
+if (isset($_GET['edit'])) {
     header("Location: edit.php");
     $taskID = $_GET['taskID'];
 }
 
-
+include '../header.php';
 
 ?>
-
-<!DOCTYPE html>
-<html>
-
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://kit.fontawesome.com/7e8022a4f3.js" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
-    <link rel="stylesheet" href="../css/stylesheet.css" />
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
+<link rel="stylesheet" href="../partials/stylesheet.css" />
 </head>
 
-<body>
 
-    <div>
-        <table class='table'>
-            <thead>
+
+<div>
+    <table class='table'>
+        <thead>
+            <tr>
+                <th>Task Name</th>
+                <th>Description</th>
+                <th>Due Date</th>
+                <th>Due Time</th>
+                <th>Course</th>
+                <th>Update Task</th>
+                <th>Check as Done</th>
+                <th>Delete Task</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            while ($row = $tasks->fetch_assoc()) :
+            ?>
                 <tr>
-                    <th>Task Name</th>
-                    <th>Description</th>
-                    <th>Due Date</th>
-                    <th>Due Time</th>
-                    <th>Course</th>
-                    <th>Update Task</th>
-                    <th>Check as Done</th>
-                    <th>Delete Task</th>
+                    <td><?= $row['taskName']; ?></td>
+                    <td><?= $row['taskDescrip']; ?></td>
+                    <td><?= $row['dueDate']; ?></td>
+                    <td><?= $row['dueTime']; ?></td>
+                    <td><?= $row['CourseName']; ?></td>
+                    <td>
+                        <a href="edit.php?taskID=<?= $row['taskID'] ?>" name="edit" class="btn btn-warning">
+                            Edit
+                        </a>
+
+                    </td>
+                    <td><a href="done.php?taskID=<?= $row['taskID'] ?>" class="btn btn-light">Done</a></td>
+                    <td><a href="delete.php?taskID=<?= $row['taskID'] ?>"" class="btn btn-success">Delete</a></td>
                 </tr>
-            </thead>
-            <tbody>
-                <?php
-                while ($row = $tasks->fetch_assoc()) :
-                ?>
-                    <tr>
-                        <td><?= $row['taskID']; ?></td>
-                        <td><?= $row['taskName']; ?></td>
-                        <td><?= $row['taskDescrip']; ?></td>
-                        <td><?= $row['dueDate']; ?></td>
-                        <td><?= $row['dueTime']; ?></td>
-                        <td><?= $row['CourseName']; ?></td>
-                        <td> 
-                            <!-- <a href="edit.php/" name="edit" class="btn btn-warning">
-                                Edit
-                            </a> -->
-                            
-                        </td>
-                        <td><a href="done.php" class="btn btn-light">Done</a></td>
-                        <td><a href="delete.php" class="btn btn-success">Delete</a></td>
-                    </tr>
-                <?php
-                endwhile;
-                ?>
-            </tbody>
-        </table>
+            <?php
+            endwhile;
+            ?>
+        </tbody>
+    </table>
+</div>
+
+
+
+<div class="d-flex">
+    <div class="mt-3">
+        <a href="<?php $pageURL ?>?show=all" class="btn btn-primary button-style">
+            Display All
+        </a>
     </div>
 
+    <div class="mt-3">
+        <form method="get" action="<?php $pageURL ?>?show=by-course" class="btn btn-primary button-style">
+            <select name="courseID" id="courseID" onchange='this.form.submit()'>
+                <option value="">Select a course</option>
+                <?php
+
+                while ($row = $coursesName->fetch_assoc()) {
+                    $selected = ($_GET['courseID'] == $row['CourseID']) ? "selected" : "";
+                    echo "<option value='" . $row['CourseID'] . "' " . $selected . ">" . $row['CourseName'] . "</option>";
+                }
 
 
-    <div class="d-flex">
-        <div class="mt-3">
-            <a href="<?php $pageURL ?>?show=all" class="btn btn-primary button-style">
-                Display All
-            </a>
-        </div>
-
-        <div class="mt-3">
-            <form method="get" action="<?php $pageURL ?>?show=by-course" class="btn btn-primary button-style">
-                <select name="courseID" id="courseID" onchange='this.form.submit()'>
-                    <option value="">Select a course</option>
-                    <?php
-
-                    while ($row = $coursesName->fetch_assoc()) {
-                        $selected = ($_GET['courseID'] == $row['CourseID']) ? "selected" : "";
-                        echo "<option value='" . $row['CourseID'] . "' " . $selected . ">" . $row['CourseName'] . "</option>";
-                    }
-
-
-                    ?>
-                </select>
-                <noscript><input type="submit" value="Submit"></noscript>
-            </form>
-        </div>
-
-        <div class="mt-3">
-            <form method="get" action="<?php echo $pageURL; ?>" class="btn btn-primary button-style">
-                <label for="duedate">Select Duedate</label>
-                <input type="date" name="dueDate" id="duedate" value="<?php echo $_GET['dueDate'] ?? ''; ?>" onchange='this.form.submit()'>
-            </form>
-        </div>
-
+                ?>
+            </select>
+            <noscript><input type="submit" value="Submit"></noscript>
+        </form>
     </div>
 
+    <div class="mt-3">
+        <form method="get" action="<?php echo $pageURL; ?>" class="btn btn-primary button-style">
+            <label for="duedate">Select Duedate</label>
+            <input type="date" name="dueDate" id="duedate" value="<?php echo $_GET['dueDate'] ?? ''; ?>" onchange='this.form.submit()'>
+        </form>
+    </div>
+
+</div>
 
 
 
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#courseID').select2();
-        });
-    </script>
-</body>
 
-
-</html>
+<?php
+include '../footer.php';
+?>

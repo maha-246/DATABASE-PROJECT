@@ -56,56 +56,39 @@ if (isset($_POST['submit'])) {
 
   if ($user) { // if user exists
     if (isset($user['username']) && $user['username'] === $username) {
-        array_push($errors, "Username already exists");
+      array_push($errors, "Username already exists");
     }
 
     if (isset($user['email']) && $user['email'] === $email) {
-        array_push($errors, "Email already exists");
+      array_push($errors, "Email already exists");
     }
   }
+}
 
-  }
-  
-  if (count($errors) == 0) {
-    // Prepare statement;
-    $stmt = $conn->prepare("INSERT INTO users (firstName, lastName, Username, Password_, Email, gender) VALUES (?, ?, ?, ?, ?, ?)");
-    
-    // Bind parameters
-    $stmt->bind_param("ssssss", $firstName, $lastName, $username, $password, $email, $gender);
-    
-    // Execute the statement
-    $stmt->execute();
+if (count($errors) == 0) {
+  // Prepare statement;
+  $stmt = $conn->prepare("INSERT INTO users (firstName, lastName, Username, Password_, Email, gender) VALUES (?, ?, ?, ?, ?, ?)");
 
-    // Close statement
-    $stmt->close();
+  // Bind parameters
+  $stmt->bind_param("ssssss", $firstName, $lastName, $username, $password, $email, $gender);
 
-  }
+  // Execute the statement
+  $stmt->execute();
 
+  // Close statement
+  $stmt->close();
+}
+include 'header.php';
 ?>
 
-<!DOCTYPE html>
-<html>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://kit.fontawesome.com/7e8022a4f3.js" crossorigin="anonymous"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-  <!-- Bootstrap Icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
-  <link rel="stylesheet" href="css/stylesheet.css" />
-</head>
+<body style="background-color:#F1B2B2">
 
-<body>
-
-  <div class="main-body">
+  <div class="main" style="background-color:#F1B2B2">
     <section class="container py-5">
       <div class="w-50 mx-auto">
-        <form method="POST" class="form-design px-5" action="">
-          <h2 class="pt-4">Registration!</h2>
+        <form method="POST" class="form-design px-5" style="background-color: #C0D6D8" action="">
+          <h2 class="pt-4" style="color: #FF0099">Registration!</h2>
           <div class="form-row pb-5">
 
             <!-- first name -->
@@ -139,13 +122,13 @@ if (isset($_POST['submit'])) {
 
             <!-- //gender -->
             <div class="form-group mt-3">
-              <b><label>Gender</label></b><br>
+              <b><label style="color: #FF0099;">Gender</label></b><br>
               <input type="radio" id="male" name="gender" value="male">
-              <label for="male">Male</label>
+              <label for="male" style="color: #FF0099;">Male</label>
               <input type="radio" id="female" name="gender" value="female">
-              <label for="female">Female</label>
+              <label for="female" style="color: #FF0099;">Female</label>
               <input type="radio" id="other" name="gender" value="other">
-              <label for="other">Other</label>
+              <label for="other" style="color: #FF0099;">Other</label>
             </div>
 
             <div class="form-group mt-3">
@@ -161,9 +144,6 @@ if (isset($_POST['submit'])) {
 
   <!-- FORM -->
 
-
-
-
-</body>
-
-</html>
+  <?php
+  include 'footer.php';
+  ?>
