@@ -1,4 +1,5 @@
 <?php
+include 'includes/db.php';
 if (!isset($_COOKIE['userID'])) {
   echo "Cookie named '" . $_COOKIE['userID'] . "' is not set!";
 } else {

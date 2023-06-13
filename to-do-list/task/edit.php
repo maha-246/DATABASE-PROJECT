@@ -51,12 +51,6 @@ if (isset($_POST['Update'])) {
     if (isset($_GET['taskID'])) {
         $taskID = $_GET['taskID'];
 
-        // $query = "SELECT c.CourseID, c.CourseName FROM Course c JOIN UserCourse uc ON c.CourseID = uc.CourseID WHERE uc.UserID = ?";
-        // $stmt = $conn->prepare($query);
-        // $stmt->bind_param("i", $userID);
-        // $stmt->execute();
-        // $coursesName = $stmt->get_result();
-
         $query = "SELECT * FROM tasks t 
         JOIN UserCourseTask uct ON t.taskID = uct.taskID 
         JOIN Course c ON uct.userCourseID = c.CourseID 

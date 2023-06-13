@@ -20,7 +20,7 @@ FROM tasks t
 JOIN UserCourseTask uct ON t.taskID = uct.taskID
 JOIN UserCourse uc ON uct.UserCourseID = uc.UserCourseID
 JOIN Course c ON uc.CourseID = c.CourseID 
-WHERE uc.UserID = ?";
+WHERE uc.UserID = ? AND t.taskStatus = 'In Progress'";
 
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $userID);
@@ -40,9 +40,9 @@ if (isset($_GET['courseID']) && $_GET['courseID'] != NULL) {
                     JOIN UserCourseTask uct ON t.taskID = uct.taskID 
                     JOIN UserCourse uc ON uct.UserCourseID = uc.UserCourseID
                     JOIN Course c ON uc.CourseID = c.CourseID 
-                    WHERE uc.UserID = ? 
-                    AND c.CourseID = ?";
-        $stmt = $conn->prepare($query);
+                    WHERE uc.UserID = ?                     
+                    AND c.CourseID = ? AND t.taskStatus = 'In Progress'";
+        $stmt = $conn->prepare($query); 
         $stmt->bind_param("ii", $userID, $selectedCourseID);
         $stmt->execute();
         $tasks = $stmt->get_result();
@@ -54,7 +54,7 @@ if (isset($_GET['courseID']) && $_GET['courseID'] != NULL) {
     JOIN UserCourseTask uct ON t.taskID = uct.taskID
     JOIN UserCourse uc ON uct.UserCourseID = uc.UserCourseID
     JOIN Course c ON uc.CourseID = c.CourseID
-    WHERE t.dueDate = ?";
+    WHERE t.dueDate = ? AND t.taskStatus = 'In Progress'" ;
 
     $stmt = $conn->prepare($query);
     $stmt->bind_param("s", $selectedDuedate);
@@ -66,7 +66,7 @@ if (isset($_GET['courseID']) && $_GET['courseID'] != NULL) {
                 JOIN UserCourseTask uct ON t.taskID = uct.taskID 
                 JOIN UserCourse uc ON uct.UserCourseID = uc.UserCourseID
                 JOIN Course c ON uc.CourseID = c.CourseID 
-                WHERE uc.UserID = ?";
+                WHERE uc.UserID = ? AND t.taskStatus = 'In Progress'";
 
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $userID);

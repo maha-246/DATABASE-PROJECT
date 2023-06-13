@@ -2,8 +2,8 @@
 session_start();  // Starting the session at the beginning
 include 'includes/db.php';
 $errors = array();
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
 
 if (isset($_POST['Login'])) {
   $usernameEmail = $_POST['usernameEmail'];
